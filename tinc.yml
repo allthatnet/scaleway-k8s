@@ -1,0 +1,6 @@
+---
+# Setting mesh vpn using tinc
+- hosts: proxy:masters:workers
+  roles:
+    - tinc
+  tags: tinc
