@@ -1,12 +1,12 @@
 ---
 - hosts: proxy:masters:workers
   roles: [docker]
-  tags: docker
+  tags: [docker, setup]
 
   # Setting mesh vpn using tinc
 - hosts: proxy:masters:workers
   roles: [tinc]
-  tags: tinc
+  tags: [tinc, setup]
 
 - hosts: proxy:masters:workers
   roles: [test]

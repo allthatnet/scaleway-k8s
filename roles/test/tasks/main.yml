@@ -1,0 +1,30 @@
+---
+- name: Install Python PIP
+  apt:
+    name: python-pip
+    state: latest
+  async: 300
+  tags: setup
+
+- name: Install docker-py
+  pip:
+    name: docker-py
+    state: latest
+  tags: setup
+
+- name: Start docker jwilder/whoami
+  docker_container:
+    name: whoami
+    image: jwilder/whoami
+    state: started
+    ports: ["8000:8000"]
+
+- name: Execute HTTP request to whoami over tinc vpn
+  uri:
+    url: "http://{{ vpn_ip }}:8000"
+    status_code: 200
+
+- name: Remove docker whoami container
+  docker_container:
+    name: whoami
+    state: absent
