@@ -31,9 +31,6 @@
     apt_key:
       url: "{{ docker_apt_key }}"
       state: present
-    when: 
-      - "'proxy' in group_names"
-      - inventory_hostname == groups['proxy'][0]
 
   - name: Adding Docker official gpg key (with proxy)
     apt_key:
@@ -42,7 +39,8 @@
     environment: 
       https_proxy: "http://{{ hostvars[groups['proxy'][0]]['ansible_tun0']['ipv4']['address'] }}:8888"
     when:
-    #  - "'workers' in group_names or 'masters' in group_names" 
+    #  - "'workers' in group_names or 'masters' in group_names"
+      - "'proxy' in group_names"
       - inventory_hostname != groups['proxy'][0]
 
   - name: Setting Docker repository depending on arch
@@ -75,7 +73,9 @@
       dest: /lib/systemd/system/docker.service
     notify:
       - reload systemd
-    when: inventory_hostname != groups['proxy'][0]
+    when:
+      - "'proxy' in group_names"
+      - inventory_hostname != groups['proxy'][0]
 
   - name: Flushing handlers
     meta: flush_handlers
