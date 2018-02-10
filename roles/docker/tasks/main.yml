@@ -6,6 +6,7 @@
     apt:
       upgrade: dist
       update_cache: yes
+    async: 300
 
   - name: Ensure docker packages are not present
     apt:
