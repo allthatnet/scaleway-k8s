@@ -1,4 +1,8 @@
 # Deploying ingress controller
 - hosts: proxy
   roles:
+    - apt-proxy
+
+- hosts: proxy
+  roles:
     - tinyproxy
