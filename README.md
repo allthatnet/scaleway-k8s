@@ -1,7 +1,7 @@
 Setup
 =========
 ```
-git clone https://github.com/chmod666org/scaleway-k8s.git
+git clone https://github.com/atn2017/scaleway-k8s.git
 cd scaleway-k8s/terraform
 ```
 Terraform
