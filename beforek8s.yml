@@ -2,6 +2,11 @@
 - hosts: proxy:masters:workers
   tasks: [ ]
 
+# tinyproxy install will not work on proxy1 without setting this up
+- hosts: proxy
+  roles:
+    - apt-proxy
+
 - hosts: proxy
   roles:
     - tinyproxy
