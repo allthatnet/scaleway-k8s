@@ -16,6 +16,9 @@ export public_ip=$(terraform output -json public_ip | jq -r '.value[0]')
 
 Ansible
 =======
+
+_Ansible v2.3+ is required_
+
 To install the k8s cluster run:
 
 ```
